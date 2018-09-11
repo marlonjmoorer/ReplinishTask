@@ -1,0 +1,9 @@
+module.exports={
+    Status:{
+        PENDING:"PENDING",
+        STARTED:"STARTED",
+        RUNNING:"RUNNING",
+        STOPING:"STOPING",
+        FINISHED:"FINISHED"
+    }
+}
