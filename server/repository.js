@@ -9,6 +9,9 @@ module.exports={
     fetchAllTask(){
         return Task.findAll({order:["rank"]})
     },
+    fetchTaskById(id){
+        return Task.findById(id)
+    },
     createTask(task){
         task.rank=utils.calculateRank(task.priority,task.estimate)
         return Task.create(task)

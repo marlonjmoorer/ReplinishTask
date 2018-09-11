@@ -2,7 +2,7 @@ const {sudoPromise,wait} = require('./utils')
 const repository = require('./repository')
 const {Status}= require('./constants')
 
-module.exports.StartTask=async(task)=>{
+const StartTask=async(task)=>{
     let time= task.estimate
     let startTime= time*.10
     let runTime= time *.80
@@ -33,8 +33,14 @@ module.exports.StartTask=async(task)=>{
     }) 
     await wait(stopTime)
     task.status=Status.FINISHED
-    await task.save()
+    
     console.log("Finished Task"+ task.id)
 
+    let savedTask= await repository.fetchTaskById(task.id)
+    if(savedTask.recurring){
+        StartTask(savedTask)
+    }
 }
-
+module.exports={
+    StartTask
+}
