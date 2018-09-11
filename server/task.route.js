@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const repository = require('./repository')
-const {Status}= require('./constants')
+const {Status,StatusOrder}= require('./constants')
 const { isObjectEmpty }= require('./utils');
 const taskqueue = require('./taskqueue');
 
@@ -34,10 +34,16 @@ router.route("/task")
         call=repository.fetchTask(req.params)
     }
     call.then(taskList=>{
+        taskList=taskList.sort(sortByStatus)
         res.json(taskList)
     }).catch(err=>{
         res.status(500).send(err)
     })
 })
+const sortByStatus=(t1,t2)=>{
+    const order1=StatusOrder[t1.status]
+    const order2=StatusOrder[t2.status]
+    return order1>order2
+}
 
 module.exports=router

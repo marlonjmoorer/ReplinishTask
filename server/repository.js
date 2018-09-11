@@ -7,7 +7,7 @@ module.exports={
         return Task.findAll({where:params})
     },
     fetchAllTask(){
-        return Task.findAll()
+        return Task.findAll({order:["rank"]})
     },
     createTask(task){
         task.rank=utils.calculateRank(task.priority,task.estimate)
