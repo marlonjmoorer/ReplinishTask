@@ -3,7 +3,8 @@ const constants = require('./constants')
 
 const sequelize= new Sequelize({
     dialect:"sqlite",
-    storage:"./db.sqlite"
+    storage:"./db.sqlite",
+    logging: false
 })
 
 sequelize
@@ -75,8 +76,13 @@ const TimeInStatus=sequelize.define("time_in_status",{
 })
 Task.hasMany(TimeInStatus)
 TimeInStatus.belongsTo(Task)
-Task.sync({force: true})
-Template.sync({force:true})
-TimeInStatus.sync({force:true})
+const sync=()=>{
+    return Promise.all([
+       Task.sync({force: true}),
+       Template.sync({force:true}),
+       TimeInStatus.sync({force:true})
+    ])
+}
 
-module.exports={Task,Template,TimeInStatus}
+
+module.exports={Task,Template,TimeInStatus,sync}

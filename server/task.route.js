@@ -40,6 +40,18 @@ router.route("/task")
         res.status(500).send(err)
     })
 })
+router.route("/task/:id")
+.get((req,res)=>{
+
+})
+.post((req,res)=>{
+    
+}).delete((req,res)=>{
+    let {id} =req.params
+    repository.deleteTask(id).then(()=>{
+        res.send("Task deleted")
+    })
+})
 
 const sortByStatus=(t1,t2)=>{
     const order1=StatusOrder[t1.status]

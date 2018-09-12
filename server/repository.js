@@ -27,6 +27,12 @@ module.exports={
     },
     updateTask(task){
         return Task.update(data)
+    },
+    deleteTask(id){
+        return this.fetchTaskById(id).then(task=>{
+            if(task)
+            return task.destroy()
+        })
     }
 
 
