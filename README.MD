@@ -10,7 +10,7 @@ Use this command to run the server
 ```sh
 $ npm run dev-server
 ```
-and this command  to run the frontend
+and this command  to run the front-end
 ```sh
 $ npm run dev-client
 ```
