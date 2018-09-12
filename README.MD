@@ -1,21 +1,21 @@
 # Replinish Task
 
-Once you have the source code 
-run  this to load the dependencies
+Once you have the source code, 
+run  this command  to load the dependencies
 ```sh
 $ npm install
 ```
 
-Use this to run the server
+Use this command to run the server
 ```sh
 $ npm run dev-server
 ```
-and this to run the frontend
+and this command  to run the frontend
 ```sh
 $ npm run dev-client
 ```
 
-To run test use
+To run unit test use
 ```sh
 $ npm run test 
 ```
