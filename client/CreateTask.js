@@ -5,21 +5,23 @@ class CreateTask extends Component {
 
     state={
       priority:1,
-      estimate:60000
+      estimate:60000,
+      recurring:false
     }
 
     onChange=({target})=>{
-        this.setState({[target.name]:target.value})
+      this.setState({[target.name]:target.value})
     }
     onSubmit=(e)=>{
         e.preventDefault();
-        const{name,priority,description,notes,estimate,}=this.state
+        const{name,priority,description,notes,estimate,recurring}=this.state
         const task={
             name,
             priority,
             description,
             notes,
-            estimate
+            estimate,
+            recurring
         }
         this.props.create(task)
     }
@@ -57,6 +59,15 @@ class CreateTask extends Component {
         <FormGroup>
           <Label >Notes</Label>
           <Input type="textarea" onChange={this.onChange} name="notes"  />
+        </FormGroup>
+        <FormGroup check>
+          <Label check>
+            <Input onChange={e=>{
+                e.target.value=e.target.checked
+                this.onChange(e)
+              }} name="recurring" type="checkbox" />{' '}
+            Recurring
+          </Label>
         </FormGroup>
         <Button>Submit</Button>
       </Form>

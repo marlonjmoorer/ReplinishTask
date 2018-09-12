@@ -16,7 +16,8 @@ router.route("/template")
         description:req.body.description,
         priority:req.body.priority,
         name:req.body.name,
-        estimate:req.body.estimate
+        estimate:req.body.estimate,
+        recurring:req.body.recurring||false,
     }
     repository.createTemplate(template).then(result=>{
         res.send("Created")

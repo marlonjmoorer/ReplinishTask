@@ -4,19 +4,21 @@ import ModalWrapper from "./ModalWrapper"
 class CreateTemplate extends Component {
     state={
       priority:1,
-      estimate:60000
+      estimate:60000,
+      recurring:false
     }
     onChange=({target})=>{
         this.setState({[target.name]:target.value})
     }
     onSubmit=(e)=>{
         e.preventDefault();
-        const{name,priority,description,estimate}=this.state
+        const{name,priority,description,estimate,recurring}=this.state
         const template={
             name,
             priority,
             description,
-            estimate
+            estimate,
+            recurring
         }
         this.props.create(template)
     }
@@ -50,6 +52,15 @@ class CreateTemplate extends Component {
         <FormGroup>
           <Label >Description</Label>
           <Input type="textarea" onChange={this.onChange} name="description"  />
+        </FormGroup>
+        <FormGroup check>
+          <Label check>
+            <Input onChange={e=>{
+                e.target.value=e.target.checked
+                this.onChange(e)
+              }} name="recurring" type="checkbox" />{' '}
+            Recurring
+          </Label>
         </FormGroup>
         <Button>Submit</Button>
       </Form>

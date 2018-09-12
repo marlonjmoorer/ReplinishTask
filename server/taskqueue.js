@@ -33,7 +33,7 @@ const StartTask=async(task)=>{
     }) 
     await wait(stopTime)
     task.status=Status.FINISHED
-    
+    task.save()
     console.log("Finished Task"+ task.id)
 
     let savedTask= await repository.fetchTaskById(task.id)

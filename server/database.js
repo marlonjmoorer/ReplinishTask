@@ -83,6 +83,6 @@ const sync=()=>{
        TimeInStatus.sync({force:true})
     ])
 }
-
+sync().catch(console.log)
 
 module.exports={Task,Template,TimeInStatus,sync}

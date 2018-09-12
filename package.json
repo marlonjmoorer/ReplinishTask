@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node server/test.js",
     "dev": "parcel ./client/index.html   "
   },
   "keywords": [],
@@ -26,6 +26,7 @@
     "express": "^4.16.3",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.4",
+    "prompt-list": "^3.2.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "reactstrap": "^6.4.0",

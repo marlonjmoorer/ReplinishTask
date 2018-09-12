@@ -9,6 +9,7 @@ export default ({template,create}) => {
         <li>Priority: {template.priority} </li>
         <li>Estimate: {template.estimate} </li>
         <li>Description: {template.description} </li>
+        <li>Recurring :{template.recurring.toString()} </li>
       </ul>
     </CardBody>
     <CardFooter>
@@ -18,9 +19,10 @@ export default ({template,create}) => {
   )
 }
 
-const makeTaskFromTemplate =({priority,estimate,name,description})=>({
+const makeTaskFromTemplate =({priority,estimate,name,description,recurring})=>({
   priority,
   estimate,
   name,
-  description
+  description,
+  recurring
 })

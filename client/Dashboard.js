@@ -6,7 +6,8 @@ import {
     Row,
     Col,
     Container,
-    Button
+    Button,
+    Alert
 } from "reactstrap"
 import PendingTaskList from './PendingTaskList'
 import CreateTask from './CreateTask';
@@ -19,6 +20,7 @@ export default class Dashboard extends Component {
 
     state = {
         activeTab: "1",
+        message:null,
         modals:{
             showTask:false,
             showTemplate:false
@@ -35,12 +37,14 @@ export default class Dashboard extends Component {
         this.setState({activeTab: id})
     }
     createTask=(task)=>{
+        console.log(task)
        Api.post("/api/task",task).then(res=>{
            if(res.data){
                if(this.state.modals.showTask){
                   this.toggle("showTask") 
                }
                this.fetchTask()
+               this.setMessage("Task created")
            }
        }).catch(err=>{
            console.log(err)
@@ -53,6 +57,9 @@ export default class Dashboard extends Component {
               this.setState({taskList:res.data})
             }
           })
+    }
+    setMessage(message){
+        this.setState({message})
     }
 
     createTemplate=(template)=>{
@@ -81,6 +88,15 @@ export default class Dashboard extends Component {
        
         return (
             <Container fluid>
+                { this.state.message && 
+                    <Row>
+                        <Col xs={12}>
+                        <Alert color="info"  toggle={e=>this.setMessage(null)} >
+                            {this.state.message}
+                        </Alert>
+                        </Col>
+                    </Row>
+                }
                 <Row>
                     <Col xs={4}>
                         <NavBar setTab={this.setTab} activeTab={this.state.activeTab}/>
