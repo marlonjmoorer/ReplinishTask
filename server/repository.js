@@ -22,6 +22,9 @@ module.exports={
     fetchTemplates(){
         return Template.findAll()
     },
+    fetchTemplateById(id){
+        return Template.findById(id)
+    },
     createTimeInStatus(data){
        return TimeInStatus.create(data)
     },
@@ -34,6 +37,7 @@ module.exports={
             return task.destroy()
         })
     }
+
 
 
 }
